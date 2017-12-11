@@ -118,3 +118,42 @@ BEGIN
 
 END;
 /
+
+-- 05-2
+
+SET SERVEROUTPUT ON
+
+DECLARE
+    vemp   emp%rowtype;
+    CURSOR c1 IS SELECT
+        *
+                 FROM
+        emp
+                 WHERE
+        comm IS NOT NULL
+    ORDER BY
+        ename;
+
+BEGIN
+    dbms_output.put_line('사번    이름  급여');
+    dbms_output.put_line('------------------');
+    OPEN c1;
+    LOOP
+        FETCH c1 INTO vemp.empno,vemp.ename,vemp.job,vemp.mgr,vemp.hiredate,vemp.sal,vemp.comm,vemp.deptno;
+
+        IF
+            c1%notfound
+        THEN
+            EXIT;
+        END IF;
+        dbms_output.put_line(vemp.empno
+        || '  '
+        || vemp.ename
+        || '    '
+        || vemp.sal);
+
+    END LOOP;
+
+    CLOSE c1;
+END;
+/

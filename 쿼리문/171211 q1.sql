@@ -377,3 +377,90 @@ SELECT
     *
 FROM
     emp;
+    
+    
+-- 패키지
+-- 오브젝트(procedure, function, trigger)들을 업무 목적별로 묶어서 관리하는 객체
+-- 패키지 헤드부분
+-- create [or replace] package 패키지명
+-- is
+-- procedure 프로시져명1;
+-- procedure 프로시져명2;
+-- end;
+
+-- 패키지 body부분
+-- create [or replace] package body 패키지명
+-- is
+-- procedure 프로시져명1
+-- is ~
+-- end;
+-- procedure 프로시져명2
+-- is ~
+-- end;
+-- end;
+
+-- execute 패키지명.프로시져명;
+
+-- 선언부
+
+CREATE OR REPLACE PACKAGE exam_pack IS
+    FUNCTION cal_bonus (
+        vempno   IN emp.empno%TYPE
+    ) RETURN NUMBER;
+
+    PROCEDURE cursor_sam02;
+
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY exam_pack IS
+
+    FUNCTION cal_bonus (
+        vempno   IN emp.empno%TYPE
+    ) RETURN NUMBER IS
+        vsal   NUMBER(7,2);
+    BEGIN
+        SELECT
+            sal
+        INTO
+            vsal
+        FROM
+            emp
+        WHERE
+            empno = vempno;
+
+        RETURN vsal * 200;
+    END;
+
+    PROCEDURE cursor_sam02 IS
+        vdept   dept%rowtype;
+        CURSOR c1 IS SELECT
+            *
+                     FROM
+            dept;
+
+    BEGIN
+        dbms_output.put_line('부서번호 / 부서명 / 지역명');
+        dbms_output.put_line('--------------------------');
+        FOR vdept IN c1 LOOP
+            EXIT WHEN c1%notfound;
+            dbms_output.put_line(vdept.deptno
+            || ' / '
+            || vdept.dname
+            || ' / '
+            || vdept.loc);
+
+        END LOOP;
+
+    END;
+
+END;
+/
+
+VARIABLE var_res NUMBER;
+
+EXEC :var_res := exam_pack.cal_bonus(7788);
+
+PRINT var_res;
+
+EXEC exam_pack.cursor_sam02;
