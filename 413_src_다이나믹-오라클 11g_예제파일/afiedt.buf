@@ -1,0 +1,9 @@
+CREATE TABLE 입고(
+입고번호 NUMBER(6) PRIMARY KEY,
+상품코드 CHAR(6) REFERENCES 상품(상품코드),
+입고일자 DATE DEFAULT SYSDATE,
+입고수량 NUMBER(6),
+입고단가 NUMBER(8),
+입고금액 NUMBER(8)
+)
+/
