@@ -34,5 +34,10 @@ SELECT
     *
 FROM
     menu;
-    
-    commit;
+
+COMMIT;
+
+SELECT
+    *
+FROM
+    member2info;
