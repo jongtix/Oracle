@@ -77,3 +77,9 @@ FROM
     book
 WHERE
     book_id = '9';
+    
+    select count(*) from buy order by buy_id, book_id;
+    
+    select * from buy;
+    
+    select sanction from buy;
