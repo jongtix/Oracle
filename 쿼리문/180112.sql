@@ -24,6 +24,8 @@ INSERT INTO manager VALUES (
     '1234'
 );
 
+DROP SEQUENCE book_seq;
+
 CREATE SEQUENCE book_seq START WITH 1 INCREMENT BY 1 NOCYCLE NOCACHE;
 
 DROP TABLE book;
@@ -100,8 +102,21 @@ CREATE TABLE buy (
     sanction          VARCHAR2(12) DEFAULT '¡ÿ∫Ò¡ﬂ'
 );
 
-select * from manager;
-select managerpasswd from manager where managerid = 'master';
+SELECT
+    *
+FROM
+    manager;
 
-select * from book;
-drop table book;
+SELECT
+    managerpasswd
+FROM
+    manager
+WHERE
+    managerid = 'master';
+
+SELECT
+    *
+FROM
+    book;
+
+DROP TABLE book;

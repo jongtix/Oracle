@@ -44,5 +44,8 @@ FROM
 WHERE
     book.book_id = cart.book_id
     AND   cart.cart_id = '9';
-    
-    select * from member2;
+
+SELECT
+    *
+FROM
+    member2;
