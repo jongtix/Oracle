@@ -40,8 +40,8 @@ CREATE TABLE pj_member (
     "ID"             VARCHAR2(20 BYTE), -- 유저아이디
     "PASSWORD"       VARCHAR2(20 BYTE),
     "NAME"           VARCHAR2(20 BYTE),
-    "RRNUM1"         NUMBER(6), -- 주민등록번호 앞자리
-    "RRNUM2"         NUMBER(7), -- 주민등록번호 뒷자리
+    "RRNUM1"         VARCHAR2(6), -- 주민등록번호 앞자리
+    "RRNUM2"         VARCHAR2(7), -- 주민등록번호 뒷자리
     "ZIPNO"          VARCHAR2(7 BYTE),
     "ADDRESS1"       VARCHAR2(80 BYTE),
     "ADDRESS2"       VARCHAR2(50 BYTE),
@@ -51,7 +51,7 @@ CREATE TABLE pj_member (
     "EMAIL"          VARCHAR2(20 BYTE),
     "REGDATE"        DATE DEFAULT SYSDATE, -- 가입일
     "USE_FLAG"       CHAR(1 BYTE) DEFAULT 0, -- 탈퇴 여부
-    "MANAGER_FALG"   CHAR(1) DEFAULT 0 -- 매니저 여부
+    "MANAGER_FLAG"   CHAR(1) DEFAULT 0 -- 매니저 여부
 );
 
 --------------------------------------------------------------------
@@ -60,14 +60,14 @@ CREATE TABLE pj_member (
 CREATE TABLE pj_item (
     num            NUMBER, -- 글번호
     "ITEM_ID"      NUMBER PRIMARY KEY,
-    "ITEM_KIND"    VARCHAR2(10 BYTE), -- 상품 유형
+    "ITEM_KIND"    VARCHAR2(30 BYTE), -- 상품 유형
     "ITEM_NAME"    VARCHAR2(100 BYTE),
     "ITEM_PRICE"   NUMBER(20),
     "ITEM_COUNT"   NUMBER(5), -- 판매 상품 수
     "ITEM_IMAGE"   VARCHAR2(16 BYTE) DEFAULT 'nothing.jpg',
     startday       DATE, -- 렌트 시작일
     endday         DATE, -- 렌트 종료일
-    trans_type     VARCHAR2(10), -- 거래 유형
+    trans_type     VARCHAR2(30), -- 거래 유형
     "REG_DATE"     DATE -- 상품 등록일
 );
 
