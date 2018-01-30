@@ -174,3 +174,15 @@ WHERE
     ( flag LIKE '11' )
     OR    del != 'Y'
     AND   readcount > 20;
+    
+    insert into pj_sub_board values(2, '작성자2', '내용2', '1111', 93, sysdate, 'N');
+    select * from pj_sub_board;
+    select * from pj_board where num = 93;
+    
+    select * from (select rownum rn, a.* from (select * from pj_sub_board where del != 'Y' order by sub_num desc) a) where rn between 1 and 10;
+    
+    select count(*) from pj_sub_board where ref = 93 and del != 'Y';
+    commit;
+    select * from (select rownum rn, a.* from (select * from pj_sub_board where del != 'Y' order by sub_num desc) a) where rn between 1 and 10;
+    
+    select password from pj_member where id = 'MemberId1';
