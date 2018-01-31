@@ -60,7 +60,7 @@ CREATE TABLE pj_item (
     ITEM_NAME    VARCHAR2(100 BYTE),
     ITEM_PRICE   NUMBER(20),
     ITEM_COUNT   NUMBER(5), -- 판매 상품 수
-    ITEM_IMAGE   VARCHAR2(16 BYTE) DEFAULT 'nothing.jpg',
+    ITEM_IMAGE   VARCHAR2(30 BYTE) DEFAULT 'nothing.jpg',
     startday       DATE, -- 렌트 시작일
     endday         DATE, -- 렌트 종료일
     trans_type     VARCHAR2(30), -- 거래 유형
